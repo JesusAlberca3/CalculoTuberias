@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -81,7 +82,17 @@ fun PantallaCalculo(
                 ),
             )
         },
-        bottomBar = { accionInferior?.invoke() },
+        bottomBar = {
+            // Con enableEdgeToEdge el contenido se dibuja detrás de los botones
+            // o la barra de gestos del sistema. El padding se aplica sólo cuando
+            // hay botón de calcular; si no, el Scaffold ya reserva ese espacio
+            // en innerPadding y no conviene duplicarlo.
+            if (accionInferior != null) {
+                Column(modifier = Modifier.navigationBarsPadding()) {
+                    accionInferior()
+                }
+            }
+        },
         modifier = Modifier.fillMaxSize(),
         content = contenido,
     )
@@ -162,7 +173,7 @@ fun BarraAccion(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 12.dp),
     ) {
         Button(
             onClick = onClick,
