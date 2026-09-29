@@ -1,8 +1,10 @@
 package com.example.calculotuberias.ui.screens
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material.icons.filled.Category
@@ -193,9 +195,13 @@ fun CanalesScreen(onVolver: () -> Unit, vm: CanalesViewModel = viewModel()) {
         CuerpoDesplazable(innerPadding) {
 
             SeccionTarjeta(titulo = "Geometría de la sección", icono = Icons.Default.Category) {
+                // Fila desplazable: los cuatro nombres completos no caben a lo ancho
+                // y truncarlos dejaba etiquetas ilegibles del tipo «Trape».
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     GeometriaCanal.entries.forEach { geometria ->
                         FilterChip(
@@ -203,11 +209,11 @@ fun CanalesScreen(onVolver: () -> Unit, vm: CanalesViewModel = viewModel()) {
                             onClick = { vm.alCambiarGeometria(geometria) },
                             label = {
                                 Text(
-                                    geometria.etiqueta.take(5),
-                                    style = MaterialTheme.typography.labelSmall,
+                                    geometria.etiqueta,
+                                    style = MaterialTheme.typography.labelLarge,
+                                    maxLines = 1,
                                 )
                             },
-                            modifier = Modifier.weight(1f),
                         )
                     }
                 }

@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -174,7 +175,11 @@ private fun CampoConSelector(
         Box(modifier = Modifier.padding(start = 8.dp, top = 6.dp)) {
             TextButton(
                 onClick = { desplegado = true },
-                modifier = Modifier.width(96.dp),
+                // Fuera del recorrido de foco: si no, la tecla «siguiente» del
+                // teclado salta al selector de unidad en vez de al campo siguiente.
+                modifier = Modifier
+                    .width(96.dp)
+                    .focusProperties { canFocus = false },
             ) {
                 Text(unidadActual, style = MaterialTheme.typography.labelLarge)
                 Icon(Icons.Default.ArrowDropDown, contentDescription = "Cambiar unidad")

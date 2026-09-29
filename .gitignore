@@ -16,3 +16,6 @@ local.properties
 
 # APKs generados
 /apk
+
+# Cache del compilador de Kotlin
+.kotlin/
