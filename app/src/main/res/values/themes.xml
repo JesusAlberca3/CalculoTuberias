@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.CalculoTuberias" parent="android:Theme.Material.Light.NoActionBar" />
+    <!--
+        Tema de arranque: sólo cubre el instante previo a que Compose tome el
+        control. El color real de la app lo define HidroTheme en Kotlin.
+    -->
+    <style name="Theme.HidroFesFlow" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/fondo_claro</item>
+        <item name="android:statusBarColor">@color/azul_contenedor</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

@@ -8,45 +8,36 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.calculotuberias.R
 
-val Yatra = FontFamily(
-    Font(R.font.yatraone, FontWeight.W200)
-)
-
-val PoppinsFontFamily = FontFamily(
+/** Poppins ya venía empaquetada en el proyecto; aquí pasa a ser la fuente del sistema. */
+val Poppins = FontFamily(
     Font(R.font.poppins_regular, FontWeight.Normal),
 )
 
-val PacificoRegular = FontFamily(
-    Font(R.font.pacifico_regular, FontWeight.Normal)
+private fun estilo(
+    tamano: Int,
+    alturaLinea: Int,
+    peso: FontWeight = FontWeight.Normal,
+    espaciado: Double = 0.0,
+) = TextStyle(
+    fontFamily = Poppins,
+    fontWeight = peso,
+    fontSize = tamano.sp,
+    lineHeight = alturaLinea.sp,
+    letterSpacing = espaciado.sp,
 )
 
-val IrishGroverFont = FontFamily(
-    Font(R.font.irishgrover)
-)
-
-// Set of Material typography styles to start with
-val Typography = Typography(
-
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    ),
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-
+val Tipografia = Typography(
+    displaySmall = estilo(36, 44, FontWeight.SemiBold),
+    headlineLarge = estilo(32, 40, FontWeight.SemiBold),
+    headlineMedium = estilo(28, 36, FontWeight.SemiBold),
+    headlineSmall = estilo(24, 32, FontWeight.SemiBold),
+    titleLarge = estilo(22, 28, FontWeight.SemiBold),
+    titleMedium = estilo(16, 24, FontWeight.SemiBold, 0.15),
+    titleSmall = estilo(14, 20, FontWeight.Medium, 0.1),
+    bodyLarge = estilo(16, 24, espaciado = 0.5),
+    bodyMedium = estilo(14, 20, espaciado = 0.25),
+    bodySmall = estilo(12, 16, espaciado = 0.4),
+    labelLarge = estilo(14, 20, FontWeight.Medium, 0.1),
+    labelMedium = estilo(12, 16, FontWeight.Medium, 0.5),
+    labelSmall = estilo(11, 16, FontWeight.Medium, 0.5),
 )

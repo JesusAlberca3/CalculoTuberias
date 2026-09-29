@@ -5,21 +5,27 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.calculotuberias.navigation.AppNavigation
-import com.example.calculotuberias.ui.theme.CalculoTuberiasTheme
+import com.example.calculotuberias.navigation.GrafoNavegacion
+import com.example.calculotuberias.ui.theme.HidroTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            AppNavigation()
+            // La versión anterior llamaba a AppNavigation() fuera del tema, así que
+            // MaterialTheme caía a sus valores por defecto morados.
+            HidroTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background,
+                ) {
+                    GrafoNavegacion()
+                }
+            }
         }
     }
 }
