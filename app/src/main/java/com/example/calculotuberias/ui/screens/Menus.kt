@@ -35,7 +35,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.calculotuberias.R
 import com.example.calculotuberias.ui.components.ListaOpciones
@@ -55,7 +54,7 @@ fun InicioScreen(
                 title = { Text("Calculadora Hidráulica") },
                 actions = {
                     IconButton(onClick = irAAcercaDe) {
-                        Icon(Icons.Default.Info, contentDescription = "Acerca de")
+                        Icon(Icons.Default.Info, contentDescription = "Documentación")
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -228,70 +227,3 @@ fun MenuPerdidasScreen(
     }
 }
 
-@Composable
-fun AcercaDeScreen(onVolver: () -> Unit) {
-    PantallaCalculo(titulo = "Acerca de", onVolver = onVolver) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Text(
-                "HidroFES Flow 2.0",
-                style = MaterialTheme.typography.headlineSmall,
-            )
-            Text(
-                "Aplicación desarrollada como parte de un proyecto académico de la UNAM " +
-                    "FES Aragón. Facilita el cálculo hidráulico en conductos a presión y " +
-                    "canales a superficie libre.",
-                style = MaterialTheme.typography.bodyMedium,
-            )
-
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    Text("Métodos implementados", style = MaterialTheme.typography.titleMedium)
-                    listOf(
-                        "Darcy-Weisbach con factor de fricción de Swamee-Jain y régimen laminar f = 64/Re",
-                        "Hazen-Williams en forma SI: h_f = 10.674·L·(Q/C)^1.852 / D^4.871",
-                        "Chézy-Manning en tubo lleno: h_f = 10.294·n²·L·Q² / D^(16/3)",
-                        "Pérdidas locales por coeficiente K: h_L = ΣK·V²/2g",
-                        "Flujo por gravedad: H = (1 + f·L/D + ΣK)·V²/2g",
-                        "Celeridad de Allievi-Korteweg y sobrepresión de Joukowsky",
-                        "Manning en canales con tirante crítico por bisección",
-                    ).forEach {
-                        Text("•  $it", style = MaterialTheme.typography.bodySmall)
-                    }
-                }
-            }
-
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    Text("Constantes empleadas", style = MaterialTheme.typography.titleMedium)
-                    Text(
-                        "Agua a 20 °C:  ρ = 998 kg/m³   ·   ν = 1.004×10⁻⁶ m²/s   ·   " +
-                            "K = 2.19×10⁹ Pa   ·   g = 9.81 m/s²",
-                        style = MaterialTheme.typography.bodySmall,
-                    )
-                }
-            }
-
-            Text(
-                "Todos los cálculos se realizan en unidades del SI internamente; " +
-                    "las unidades de entrada se convierten en la frontera.",
-                style = MaterialTheme.typography.bodySmall,
-                textAlign = TextAlign.Start,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(bottom = 16.dp),
-            )
-        }
-    }
-}

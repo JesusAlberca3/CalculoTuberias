@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.calculotuberias.ui.screens.AcercaDeScreen
+import com.example.calculotuberias.ui.screens.DocumentacionScreen
 import com.example.calculotuberias.ui.screens.CanalesScreen
 import com.example.calculotuberias.ui.screens.CaudalScreen
 import com.example.calculotuberias.ui.screens.CeleridadScreen
@@ -54,6 +54,6 @@ fun GrafoNavegacion() {
         composable<PerdidasLocalesRuta> { PerdidasLocalesScreen(onVolver = volver) }
         composable<CeleridadRuta> { CeleridadScreen(onVolver = volver) }
         composable<CanalesRuta> { CanalesScreen(onVolver = volver) }
-        composable<AcercaDe> { AcercaDeScreen(onVolver = volver) }
+        composable<AcercaDe> { DocumentacionScreen(onVolver = volver) }
     }
 }
